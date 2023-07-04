@@ -6,14 +6,15 @@
 //  Copyright © 2023 All rights reserved  //
 //  ------------------------------------  //
 
-import XCTest
-@testable import Networking
+import Foundation
 
-final class NetworkingTests: XCTestCase {
-    
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-    }
+public protocol NetworkTokenProviderProtocol {
+    func isValid(_ token: APIToken) -> Bool
+    func bearer(_ token: APIToken) -> String?
+    func refresh(_ token: APIToken, _ completion: @escaping (String?) -> Void)
+}
+
+public enum APIToken {
+    case none
+    case main
 }
